@@ -8,11 +8,11 @@ import {
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {useStore} from './src/store';
+import {useUserStore} from './src/store';
 
 const App = () => {
-  const t = useStore(state => state.name);
-  const changeT = useStore(state => state.setName);
+  const t = useUserStore(state => state.name);
+  const changeT = useUserStore(state => state.setName);
 
   const isDarkMode = useColorScheme() === 'dark';
 
