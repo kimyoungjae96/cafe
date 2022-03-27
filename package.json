@@ -6,12 +6,15 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
+    "cp-staging-i": "appcenter codepush release-react -a sskim5421-gmail.com/cafe-ios -d Staging",
+    "cp-production-i": "appcenter codepush release-react -a sskim5421-gmail.com/cafe-ios -d Production",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
     "react": "17.0.2",
     "react-native": "0.67.4",
+    "react-native-code-push": "^7.0.4",
     "react-query": "3.34.18",
     "zustand": "^3.7.1"
   },
