@@ -12,6 +12,7 @@
   "dependencies": {
     "react": "17.0.2",
     "react-native": "0.67.4",
+    "react-query": "3.34.18",
     "zustand": "^3.7.1"
   },
   "devDependencies": {
