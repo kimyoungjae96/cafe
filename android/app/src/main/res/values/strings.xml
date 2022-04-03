@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">cafe</string>
+    <string name="kakao_app_key">c32148bb90ce854781ba2b26fc985a70</string>
     <string moduleConfig="true" name="CodePushDeploymentKey">vRU1ZdstQBk-inbkkcXgp_dQgQYGpF9ptlkR2</string>
 </resources>
