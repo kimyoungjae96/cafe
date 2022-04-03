@@ -37,6 +37,8 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = cafe/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = cafe/main.m; sourceTree = "<group>"; };
 		1D0AE47A65C8663E3B452821 /* Pods-cafe-cafeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cafe-cafeTests.release.xcconfig"; path = "Target Support Files/Pods-cafe-cafeTests/Pods-cafe-cafeTests.release.xcconfig"; sourceTree = "<group>"; };
+		37AB04AD583815E3ABC9429B /* Pods-cafe-cafeTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cafe-cafeTests.staging.xcconfig"; path = "Target Support Files/Pods-cafe-cafeTests/Pods-cafe-cafeTests.staging.xcconfig"; sourceTree = "<group>"; };
+		56D11C72FFE1F48A487B1674 /* Pods-cafe.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cafe.staging.xcconfig"; path = "Target Support Files/Pods-cafe/Pods-cafe.staging.xcconfig"; sourceTree = "<group>"; };
 		6423831EA8574132BED9D8CC /* libPods-cafe.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-cafe.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C97AB639B58BBB4B15BBE30 /* Pods-cafe-cafeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cafe-cafeTests.debug.xcconfig"; path = "Target Support Files/Pods-cafe-cafeTests/Pods-cafe-cafeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = cafe/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -144,6 +146,8 @@
 				D00AAFFCFCFDA5787532823F /* Pods-cafe.release.xcconfig */,
 				6C97AB639B58BBB4B15BBE30 /* Pods-cafe-cafeTests.debug.xcconfig */,
 				1D0AE47A65C8663E3B452821 /* Pods-cafe-cafeTests.release.xcconfig */,
+				56D11C72FFE1F48A487B1674 /* Pods-cafe.staging.xcconfig */,
+				37AB04AD583815E3ABC9429B /* Pods-cafe-cafeTests.staging.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -485,6 +489,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODEPUSH_KEY = "";
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QL5CBT2PF2;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = cafe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -497,7 +502,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = co.youngjae.cafe;
 				PRODUCT_NAME = cafe;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -513,6 +518,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODEPUSH_KEY = PvOuuz0d1ek0rxy2vDH0m2ZDR6LA5s1_9Rufb;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QL5CBT2PF2;
 				INFOPLIST_FILE = cafe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -524,7 +530,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = co.youngjae.cafe;
 				PRODUCT_NAME = cafe;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -714,12 +720,13 @@
 		};
 		9A65F24E27F044CF004E1921 /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D00AAFFCFCFDA5787532823F /* Pods-cafe.release.xcconfig */;
+			baseConfigurationReference = 56D11C72FFE1F48A487B1674 /* Pods-cafe.staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODEPUSH_KEY = "fvZGU-yTepOk0a2fprhb-3nXsbkyVb13pqedE";
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QL5CBT2PF2;
 				INFOPLIST_FILE = cafe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -731,7 +738,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = co.youngjae.cafe;
 				PRODUCT_NAME = cafe;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -740,7 +747,7 @@
 		};
 		9A65F24F27F044CF004E1921 /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1D0AE47A65C8663E3B452821 /* Pods-cafe-cafeTests.release.xcconfig */;
+			baseConfigurationReference = 37AB04AD583815E3ABC9429B /* Pods-cafe-cafeTests.staging.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
