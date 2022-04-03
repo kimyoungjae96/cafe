@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">cafe</string>
+    <string moduleConfig="true" name="CodePushDeploymentKey">vRU1ZdstQBk-inbkkcXgp_dQgQYGpF9ptlkR2</string>
 </resources>
