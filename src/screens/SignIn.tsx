@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {View, Text, SafeAreaView, TouchableOpacity} from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, SafeAreaView, TouchableOpacity } from 'react-native';
 import {
   KakaoOAuthToken,
   KakaoProfile,
@@ -10,7 +10,7 @@ import {
 } from '@react-native-seoul/kakao-login';
 import appleAuth from '@invertase/react-native-apple-authentication';
 import FastImage from 'react-native-fast-image';
-import {appleSymbol, kakaoSymbol} from '../assets/images';
+import { appleSymbol, kakaoSymbol } from '../assets/images';
 
 const SignIn = () => {
   const [result, setResult] = useState<string>('');
@@ -62,7 +62,7 @@ const SignIn = () => {
   };
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{ flex: 1 }}>
       <View
         style={{
           marginHorizontal: 16,
@@ -83,9 +83,9 @@ const SignIn = () => {
           }}>
           <FastImage
             source={kakaoSymbol}
-            style={{width: 32, height: 32, position: 'absolute', left: 12}}
+            style={{ width: 32, height: 32, position: 'absolute', left: 12 }}
             resizeMode="contain"></FastImage>
-          <Text style={{color: '#191919', fontSize: 16, fontWeight: 'bold'}}>
+          <Text style={{ color: '#191919', fontSize: 16, fontWeight: 'bold' }}>
             카카오톡으로 계속하기
           </Text>
         </TouchableOpacity>
@@ -101,9 +101,9 @@ const SignIn = () => {
           }}>
           <FastImage
             source={appleSymbol}
-            style={{width: 32, height: 32, position: 'absolute', left: 12}}
+            style={{ width: 32, height: 32, position: 'absolute', left: 12 }}
             resizeMode="contain"></FastImage>
-          <Text style={{color: 'white', fontSize: 16, fontWeight: 'bold'}}>
+          <Text style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}>
             Apple로 계속하기
           </Text>
         </TouchableOpacity>
@@ -117,7 +117,7 @@ const SignIn = () => {
             alignItems: 'center',
             marginTop: 8,
           }}>
-          <Text style={{color: 'white', fontSize: 16, fontWeight: 'bold'}}>
+          <Text style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}>
             이메일로 계속하기
           </Text>
         </TouchableOpacity>

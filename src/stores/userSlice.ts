@@ -1,4 +1,4 @@
-import {StoreSlice} from './type';
+import { StoreSlice } from './type';
 
 type UserState = {
   userId: number;
@@ -9,5 +9,5 @@ type UserState = {
 export const createUserSlice: StoreSlice<UserState> = set => ({
   userId: 0,
   name: '이름',
-  setName: (name: string) => set({name}),
+  setName: (name: string) => set({ name }),
 });

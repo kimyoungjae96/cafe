@@ -1,4 +1,4 @@
-import {default as RNCodePush} from 'react-native-code-push';
+import { default as RNCodePush } from 'react-native-code-push';
 export const codePush = (app: any) => {
   if (__DEV__) {
     return app;

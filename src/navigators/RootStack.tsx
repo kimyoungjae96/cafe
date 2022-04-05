@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
-import {SignUp, SignIn, Home} from '../screens';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import React, { useState } from 'react';
+import { SignUp, SignIn, Home } from '../screens';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
 
