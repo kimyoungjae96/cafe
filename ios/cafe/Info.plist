@@ -33,16 +33,16 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+    <key>KAKAO_APP_KEY</key>
+    <string>c32148bb90ce854781ba2b26fc985a70</string>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>kakaokompassauth</string>
+        <string>storykompassauth</string>
+        <string>kakaolink</string>
+    </array>
 	<key>CodePushDeploymentKey</key>
 	<string>$(CODEPUSH_KEY)</string>
-	<key>KAKAO_APP_KEY</key>
-	<string>kakaoc32148bb90ce854781ba2b26fc985a70</string>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>kakaokompassauth</string>
-		<string>storykompassauth</string>
-		<string>kakaolink</string>
-	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -72,5 +72,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>CFBundleAllowMixedLocalizations</key>
+    <string>true</string>
 </dict>
 </plist>

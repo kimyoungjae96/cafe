@@ -42,6 +42,8 @@
 		6423831EA8574132BED9D8CC /* libPods-cafe.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-cafe.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C97AB639B58BBB4B15BBE30 /* Pods-cafe-cafeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cafe-cafeTests.debug.xcconfig"; path = "Target Support Files/Pods-cafe-cafeTests/Pods-cafe-cafeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = cafe/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9A33156C27FB30EB00B8BFE6 /* cafeStaging.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = cafeStaging.entitlements; path = cafe/cafeStaging.entitlements; sourceTree = "<group>"; };
+		9A33156D27FB404C00B8BFE6 /* cafe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = cafe.entitlements; path = cafe/cafe.entitlements; sourceTree = "<group>"; };
 		ABFE59519B596E51CEFDCCC0 /* libPods-cafe-cafeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-cafe-cafeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0A881CF5CF3F2B244570E2A /* Pods-cafe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cafe.debug.xcconfig"; path = "Target Support Files/Pods-cafe/Pods-cafe.debug.xcconfig"; sourceTree = "<group>"; };
 		D00AAFFCFCFDA5787532823F /* Pods-cafe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cafe.release.xcconfig"; path = "Target Support Files/Pods-cafe/Pods-cafe.release.xcconfig"; sourceTree = "<group>"; };
@@ -88,6 +90,8 @@
 		13B07FAE1A68108700A75B9A /* cafe */ = {
 			isa = PBXGroup;
 			children = (
+				9A33156D27FB404C00B8BFE6 /* cafe.entitlements */,
+				9A33156C27FB30EB00B8BFE6 /* cafeStaging.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -488,6 +492,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODEPUSH_KEY = "";
+				CODE_SIGN_ENTITLEMENTS = cafe/cafe.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QL5CBT2PF2;
 				ENABLE_BITCODE = NO;
@@ -517,6 +522,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODEPUSH_KEY = PvOuuz0d1ek0rxy2vDH0m2ZDR6LA5s1_9Rufb;
+				CODE_SIGN_ENTITLEMENTS = cafe/cafe.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QL5CBT2PF2;
 				INFOPLIST_FILE = cafe/Info.plist;
@@ -725,6 +731,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODEPUSH_KEY = "fvZGU-yTepOk0a2fprhb-3nXsbkyVb13pqedE";
+				CODE_SIGN_ENTITLEMENTS = cafe/cafeStaging.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QL5CBT2PF2;
 				INFOPLIST_FILE = cafe/Info.plist;
@@ -740,6 +749,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = co.youngjae.cafe;
 				PRODUCT_NAME = cafe;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

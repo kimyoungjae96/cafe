@@ -13,8 +13,12 @@ import {
   logout,
   unlink,
 } from '@react-native-seoul/kakao-login';
-import {kakaoSymbol} from './src/assets/images';
+import {appleSymbol, kakaoSymbol} from './src/assets/images';
 import FastImage from 'react-native-fast-image';
+import {
+  appleAuth,
+  AppleButton,
+} from '@invertase/react-native-apple-authentication';
 
 const App = () => {
   const [result, setResult] = useState<string>('');
@@ -23,6 +27,29 @@ const App = () => {
 
     setResult(JSON.stringify(token));
   };
+
+  async function onAppleButtonPress() {
+    try {
+      // performs login request
+      const appleAuthRequestResponse = await appleAuth.performRequest({
+        requestedOperation: appleAuth.Operation.LOGIN,
+        requestedScopes: [appleAuth.Scope.EMAIL, appleAuth.Scope.FULL_NAME],
+      });
+
+      // get current authentication state for user
+      // /!\ This method must be tested on a real device. On the iOS simulator it always throws an error.
+      const credentialState = await appleAuth.getCredentialStateForUser(
+        appleAuthRequestResponse.user,
+      );
+
+      // use credentialState response to ensure the user is authenticated
+      if (credentialState === appleAuth.State.AUTHORIZED) {
+        // user is authenticated
+      }
+    } catch (e) {
+      alert(e);
+    }
+  }
 
   const signOutWithKakao = async (): Promise<void> => {
     const message = await logout();
@@ -43,10 +70,19 @@ const App = () => {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{flex: 1}}>
       <QueryClientProvider client={queryClient}>
-        <View style={{margin: 16}}>
+        <View
+          style={{
+            marginHorizontal: 16,
+            flex: 1,
+            justifyContent: 'center',
+            top: -48,
+          }}>
           <TouchableOpacity
+            onPress={() => {
+              signInWithKakao();
+            }}
             style={{
               backgroundColor: '#FEE500',
               height: 48,
@@ -62,16 +98,38 @@ const App = () => {
               카카오톡으로 계속하기
             </Text>
           </TouchableOpacity>
-          <Button
-            title="카카오톡으로 계속하기"
-            onPress={() => {
-              signInWithKakao();
-            }}></Button>
-          <Button
-            title="정보 불러오기"
-            onPress={() => {
-              getProfile();
-            }}></Button>
+          <TouchableOpacity
+            onPress={() => onAppleButtonPress()}
+            style={{
+              backgroundColor: '#000',
+              height: 48,
+              borderRadius: 6,
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginTop: 8,
+            }}>
+            <FastImage
+              source={appleSymbol}
+              style={{width: 32, height: 32, position: 'absolute', left: 12}}
+              resizeMode="contain"></FastImage>
+            <Text style={{color: 'white', fontSize: 16, fontWeight: 'bold'}}>
+              Apple로 계속하기
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => onAppleButtonPress()}
+            style={{
+              backgroundColor: '#5e5e5e',
+              height: 48,
+              borderRadius: 6,
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginTop: 8,
+            }}>
+            <Text style={{color: 'white', fontSize: 16, fontWeight: 'bold'}}>
+              이메일로 계속하기
+            </Text>
+          </TouchableOpacity>
         </View>
       </QueryClientProvider>
     </SafeAreaView>
