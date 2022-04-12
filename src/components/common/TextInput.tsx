@@ -58,7 +58,7 @@ const TextInput = React.forwardRef<RNTextInput, TextInputProps>(
           ]}>
           {props.children}
         </RNTextInput>
-        {props.errorMessage && (
+        {!!props.errorMessage && (
           <Text
             style={{
               color: theme['color-danger-500'],

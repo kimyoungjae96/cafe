@@ -8,7 +8,10 @@ const RootStack = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
       {isLoggedIn ? (
         <Stack.Group>
           <Stack.Screen name="Home" component={Home} />

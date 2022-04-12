@@ -13,11 +13,17 @@ import FastImage from 'react-native-fast-image';
 import { appleSymbol, kakaoSymbol } from '../assets/images';
 
 const SignIn = () => {
-  const [result, setResult] = useState<string>('');
+  const [result, setResult] = useState<string>('1');
+  const [result2, setResult2] = useState<string>('1');
   const signInWithKakao = async (): Promise<void> => {
-    const token: KakaoOAuthToken = await login();
-
-    setResult(JSON.stringify(token));
+    try {
+      console.log('hey');
+      const token: KakaoOAuthToken = await login();
+      console.log(token);
+      setResult(JSON.stringify(token));
+    } catch (e) {
+      console.log('e', e);
+    }
   };
 
   async function onAppleButtonPress() {
@@ -34,6 +40,8 @@ const SignIn = () => {
         appleAuthRequestResponse.user,
       );
 
+      setResult2(JSON.stringify(appleAuthRequestResponse));
+      console.log(appleAuthRequestResponse);
       // use credentialState response to ensure the user is authenticated
       if (credentialState === appleAuth.State.AUTHORIZED) {
         // user is authenticated
@@ -121,6 +129,14 @@ const SignIn = () => {
             이메일로 계속하기
           </Text>
         </TouchableOpacity>
+        <TouchableOpacity onPress={() => getProfile()}>
+          <Text>카카오 정보 불러오기</Text>
+          <Text>{result}</Text>
+        </TouchableOpacity>
+        <Text>
+          <Text>애플 정보</Text>
+          <Text>{result2}</Text>
+        </Text>
       </View>
     </SafeAreaView>
   );
