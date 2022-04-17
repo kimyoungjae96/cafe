@@ -12,12 +12,11 @@ import {
   Alert,
   Keyboard,
 } from 'react-native';
-import { isIOS } from '../infra/constant';
-import { TextInput } from '../components';
-import { theme } from '../infra/color';
-import Dot from '../components/common/Dot';
-import { userApi } from '../api/UserApi';
-import { useUserStore } from '../stores';
+
+import { isIOS, theme } from '@/infra';
+import { TextInput, Dot } from '@/components';
+import { userApi } from '@/api/UserApi';
+import { useUserStore } from '@/stores';
 
 const enum STEP {
   name,
