@@ -102,23 +102,14 @@ const SignUp = () => {
   };
 
   const getTitle = (currentStep: STEP) => {
-    if (currentStep === STEP.name) {
-      return '이름을 입력해주세요 :)';
-    }
-    if (currentStep === STEP.nickname) {
-      return '닉네임을 입력해주세요 :)';
-    }
-    if (currentStep === STEP.id) {
-      return '아이디를 입력해주세요 :)';
-    }
-    if (currentStep === STEP.password) {
-      return '비밀번호를 입력해주세요 :)';
-    }
-    if (currentStep === STEP.residentRegistrationNumber) {
-      return '주민등록번호를 입력해주세요 :)';
-    }
-
-    return '입력한 정보를 확인해주세요 :)';
+    return {
+      [STEP.name]: () => '이름을 입력해주세요',
+      [STEP.nickname]: () => '닉네임을 입력해주세요 :)',
+      [STEP.id]: () => '닉네임을 입력해주세요 :)',
+      [STEP.password]: () => '닉네임을 입력해주세요 :)',
+      [STEP.residentRegistrationNumber]: () => '닉네임을 입력해주세요 :)',
+      [STEP.done]: () => '입력한 정보를 확인해주세요 :)',
+    }[currentStep]();
   };
 
   const setError = (
