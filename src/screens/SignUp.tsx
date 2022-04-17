@@ -10,13 +10,14 @@ import {
   StyleSheet,
   TextInput as RNTextInput,
   Alert,
+  Keyboard,
 } from 'react-native';
 import { isIOS } from '../infra/constant';
 import { TextInput } from '../components';
 import { theme } from '../infra/color';
 import Dot from '../components/common/Dot';
-import useKeyboard from '@rnhooks/keyboard';
 import { userApi } from '../api/UserApi';
+import { useUserStore } from '../stores';
 
 const enum STEP {
   name,
@@ -29,7 +30,6 @@ const enum STEP {
 
 // 주민번호 앞자리 + 뒷자리 1개, 이름 (선택), 닉네임 (중복 체크 필요, 10자리), 휴대폰 번호, 아이디, 비밀번호
 const SignUp = () => {
-  const [, dismiss] = useKeyboard();
   const [step, setStep] = useState(STEP.name);
   const [formData, setFormData] = useState({
     name: { value: '', errorMessage: '' },
@@ -39,6 +39,7 @@ const SignUp = () => {
     frontResidentRegistrationNumber: { value: '', errorMessage: '' },
     seventhDigitOfResidentRegistrationNumber: { value: '', errorMessage: '' },
   });
+  const setToken = useUserStore(state => state.setToken);
 
   const seventhDigitOfResidentRegistrationNumberRef = useRef<RNTextInput>(null);
 
@@ -50,9 +51,9 @@ const SignUp = () => {
 
   useEffect(() => {
     if (step === STEP.done) {
-      dismiss();
+      Keyboard.dismiss();
     }
-  }, [step, dismiss]);
+  }, [step]);
 
   const validate = () => {
     if (step >= STEP.name) {
@@ -317,7 +318,7 @@ const SignUp = () => {
                 seventhDigitOfResidentRegistrationNumber,
               } = formData;
               try {
-                await userApi.signUp({
+                const res = await userApi.signUp({
                   id: id.value,
                   password: password.value,
                   name: name.value,
@@ -328,6 +329,7 @@ const SignUp = () => {
                     seventhDigitOfResidentRegistrationNumber.value,
                   ),
                 });
+                Alert.alert('회원가입 성공');
               } catch (e) {
                 Alert.alert(String(e));
               }
