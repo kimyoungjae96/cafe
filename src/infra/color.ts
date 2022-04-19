@@ -3,7 +3,7 @@ export const theme = {
   'color-primary-200': '#FFF499',
   'color-primary-300': '#FFEC66',
   'color-primary-400': '#FFE43F',
-  'color-primary-500': '#FF5E00',
+  'color-primary-500': '#FF5C00',
   'color-primary-600': '#DBB500',
   'color-primary-700': '#B79400',
   'color-primary-800': '#937500',

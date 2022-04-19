@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { SignUp, SignIn, Home } from '../screens';
+import { SignUp, Home } from '../screens';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import MainTab from '@/navigators/MainTab';
 
 const Stack = createNativeStackNavigator();
 
 const RootStack = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   return (
     <Stack.Navigator
@@ -14,11 +15,11 @@ const RootStack = () => {
       }}>
       {isLoggedIn ? (
         <Stack.Group>
-          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Main" component={MainTab} />
         </Stack.Group>
       ) : (
         <Stack.Group>
-          <Stack.Screen name="SignIn" component={SignIn} />
+          {/*<Stack.Screen name="SignIn" component={SignIn} />*/}
           <Stack.Screen name="SignUp" component={SignUp} />
         </Stack.Group>
       )}
