@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from '@/components';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {
   BottomTabBarProps,
