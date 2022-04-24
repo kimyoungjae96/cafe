@@ -120,6 +120,7 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
               style={{ width: 22, height: 26 }}
               resizeMode="contain"
             />
+            <Text style={{ fontSize: 11, marginTop: 4 }}>기록</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={{
@@ -131,6 +132,7 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
               style={{ width: 28, height: 31 }}
               resizeMode="contain"
             />
+            <Text style={{ fontSize: 11, marginTop: 4 }}>발도장</Text>
           </TouchableOpacity>
         </TouchableOpacity>
       )}
