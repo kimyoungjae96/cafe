@@ -14,6 +14,7 @@ import {
 } from '@/assets/images';
 import { Text, TouchableOpacity, View } from '@/components';
 import { isIOS, theme, WINDOW_HEIGHT, WINDOW_WIDTH } from '@/infra';
+import { ScreenName } from '@/infra/route';
 
 const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
   const [isWritingPressed, setIsWritingPressed] = React.useState(false);
@@ -109,7 +110,7 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
           />
           <TouchableOpacity
             onPress={() => {
-              setIsWritingPressed(false);
+              navigation.navigate(ScreenName.Record);
             }}
             style={{
               ...styles.writingButton,

@@ -1,3 +1,3 @@
-export const kakaoSymbol = require('./kakao-symbol.png');
-export const appleSymbol = require('./apple-symbol.png');
+export const locationIcon = require('./location.png');
+export const backIcon = require('./back.png');
 export * from './mainBottomMenus';

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { SignUp, Home } from '../screens';
+
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import { SignUp, Record } from '@/screens';
 import MainTab from '@/navigators/MainTab';
-import { WritingButtonsScreen } from '@/screens/WritingButtons';
-import { NavigationContainer } from '@react-navigation/native';
+import { ScreenName } from '@/infra/route';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,19 +19,14 @@ const RootStack = () => {
       {isLoggedIn ? (
         <>
           <Stack.Group>
-            <Stack.Screen name="Main" component={MainTab} />
-          </Stack.Group>
-          <Stack.Group screenOptions={{ presentation: 'modal' }}>
-            <Stack.Screen
-              name="WritingButtons"
-              component={WritingButtonsScreen}
-            />
+            <Stack.Screen name={ScreenName.MainTab} component={MainTab} />
+            <Stack.Screen name={ScreenName.Record} component={Record} />
           </Stack.Group>
         </>
       ) : (
         <Stack.Group>
           {/*<Stack.Screen name="SignIn" component={SignIn} />*/}
-          <Stack.Screen name="SignUp" component={SignUp} />
+          <Stack.Screen name={ScreenName.SignUp} component={SignUp} />
         </Stack.Group>
       )}
     </Stack.Navigator>
