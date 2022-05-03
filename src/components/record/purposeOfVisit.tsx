@@ -1,8 +1,7 @@
-import { Text, View } from '@/components';
-import FastImage from 'react-native-fast-image';
-import { backIcon } from '@/assets/images';
-import { Option, QuestionWithScore } from '@/components/record/index';
 import React, { Dispatch, SetStateAction } from 'react';
+
+import { Text, View } from '@/components';
+import { Option, QuestionWithScore } from '@/components/record/index';
 import { IPurposeOfVisit } from '@/models';
 
 const PurposeOfVisit = ({
@@ -29,20 +28,6 @@ const PurposeOfVisit = ({
       <View
         style={{
           backgroundColor: 'white',
-          paddingTop: 12,
-          paddingHorizontal: 20,
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-        }}>
-        <FastImage source={backIcon} style={{ width: 21, height: 17 }} />
-        <View style={{ flexDirection: 'row' }}>
-          <Text>1</Text>
-          <Text>/5</Text>
-        </View>
-      </View>
-      <View
-        style={{
-          backgroundColor: 'white',
           paddingHorizontal: 20,
           paddingBottom: 38,
         }}>
@@ -64,25 +49,7 @@ const PurposeOfVisit = ({
                 selected={selected}
                 onClickOption={() => {
                   selectedPurposes.clear();
-                  if (selectedPurposes.has(key)) {
-                    setPurposesOfVisit(prev => {
-                      return prev.map(p => {
-                        if (p.key === key) {
-                          return {
-                            ...p,
-                            score: 0,
-                          };
-                        }
-
-                        return p;
-                      });
-                    });
-                    setSelectedPurposes(
-                      prev => new Set([...prev].filter(x => x !== key)),
-                    );
-                  } else {
-                    setSelectedPurposes(prev => new Set(prev.add(key)));
-                  }
+                  setSelectedPurposes(prev => new Set(prev.add(key)));
                 }}
               />
             );
