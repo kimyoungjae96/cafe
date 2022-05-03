@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import FastImage from 'react-native-fast-image';
 
 import { locationIcon, backIcon } from '@/assets/images';
-import { Text, View, TouchableOpacity } from '@/components';
-import { theme, WINDOW_WIDTH } from '@/infra';
+import { Text, View } from '@/components';
+import { theme } from '@/infra';
 import { ScrollView, StatusBar, SafeAreaView } from 'react-native';
 import { BottomButton, Option, QuestionWithScore } from '@/components/record';
 
@@ -45,17 +45,16 @@ const Record = () => {
     },
   ]);
 
-  const getQuestions = (purposeKeys: string[]) => {
-    return purposesOfVisit.filter(purpose => purposeKeys.includes(purpose.key));
-  };
+  const getQuestions = (purposeKeys: string[]) =>
+    purposeKeys.map(purposeKey =>
+      purposesOfVisit.find(purpose => purpose.key === purposeKey),
+    );
 
-  const getScore = (key: string) => {
-    return purposesOfVisit.filter(purpose => purpose.key === key)[0].score;
-  };
+  const getScore = (key: string) =>
+    purposesOfVisit.filter(purpose => purpose.key === key)[0].score;
 
-  const nextButtonDisabled = () => {
-    return purposesOfVisit.every(purpose => purpose.score === 0);
-  };
+  const nextButtonDisabled = () =>
+    purposesOfVisit.every(purpose => purpose.score === 0);
 
   return (
     <>
@@ -77,6 +76,7 @@ const Record = () => {
           <View
             style={{
               backgroundColor: 'white',
+              paddingTop: 12,
               paddingHorizontal: 20,
               flexDirection: 'row',
               justifyContent: 'space-between',
@@ -152,6 +152,10 @@ const Record = () => {
           {getQuestions(
             [...selectedPurposes.values()].map((key: any) => key),
           ).map(purpose => {
+            if (!purpose) {
+              return;
+            }
+
             const question = purpose.question;
             return (
               <QuestionWithScore
