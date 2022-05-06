@@ -5,7 +5,17 @@ import { Text, View } from '@/components';
 import { BottomButton, EatingMenu, PurposeOfVisit } from '@/components/record';
 import { IEatingMenu, IPurposeOfVisit } from '@/models';
 import FastImage from 'react-native-fast-image';
-import { backIcon } from '@/assets/images';
+import {
+  backIcon,
+  defaultConversation,
+  defaultDate,
+  defaultEtc,
+  defaultStudy,
+  selectedConversation,
+  selectedDate,
+  selectedEtc,
+  selectedStudy,
+} from '@/assets/images';
 
 enum Step {
   'PurposeOfVisit',
@@ -21,24 +31,32 @@ const defaultPurposeOfVisit = [
     description: '공부',
     question: '공부하기 괜찮으셨나요?',
     score: 0,
+    defaultImage: defaultStudy,
+    selectedImage: selectedStudy,
   },
   {
     key: 'conversation',
     description: '대화',
     question: '대화하기 괜찮으셨나요?',
     score: 0,
+    defaultImage: defaultConversation,
+    selectedImage: selectedConversation,
   },
   {
     key: 'date',
     description: '데이트',
     question: '데이트하기 괜찮으셨나요?',
     score: 0,
+    defaultImage: defaultDate,
+    selectedImage: selectedDate,
   },
   {
     key: 'etc',
     description: '기타',
     question: '전반적으로 카페는 어떠셨나요?',
     score: 0,
+    defaultImage: defaultEtc,
+    selectedImage: selectedEtc,
   },
 ];
 

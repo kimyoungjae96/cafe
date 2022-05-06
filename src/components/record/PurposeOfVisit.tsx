@@ -51,6 +51,11 @@ const PurposeOfVisit = ({
                   selectedPurposes.clear();
                   setSelectedPurposes(prev => new Set(prev.add(key)));
                 }}
+                image={
+                  selected
+                    ? purposeOfVisit.selectedImage
+                    : purposeOfVisit.defaultImage
+                }
               />
             );
           })}

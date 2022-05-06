@@ -7,4 +7,6 @@ interface Option {
   description: string;
   question: string;
   score: number;
+  defaultImage: string;
+  selectedImage: string;
 }
