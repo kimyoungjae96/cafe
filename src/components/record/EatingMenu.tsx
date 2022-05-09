@@ -47,6 +47,11 @@ const EatingMenu = ({
               <Option
                 text={purposeOfVisit.description}
                 selected={selected}
+                image={
+                  selected
+                    ? purposeOfVisit.selectedImage
+                    : purposeOfVisit.defaultImage
+                }
                 onClickOption={() => {
                   if (selectedEatingMenus.has(key)) {
                     setEatingMenus(prev => {
