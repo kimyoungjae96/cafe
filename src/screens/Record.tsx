@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import { ScrollView, StatusBar, SafeAreaView } from 'react-native';
 
 import { Text, View } from '@/components';
-import { BottomButton, EatingMenu, PurposeOfVisit } from '@/components/record';
+import {
+  BottomButton,
+  EatingMenu,
+  Feeling,
+  PurposeOfVisit,
+} from '@/components/record';
 import { IEatingMenu, IPurposeOfVisit } from '@/models';
 import FastImage from 'react-native-fast-image';
 import {
@@ -14,6 +19,7 @@ import {
   defaultDate,
   defaultEtc,
   defaultStudy,
+  feelingBackground,
   selectedBakery,
   selectedBeverage,
   selectedCoffee,
@@ -123,7 +129,11 @@ const Record = () => {
     <>
       <SafeAreaView style={{ flex: 0, backgroundColor: 'white' }} />
       <SafeAreaView
-        style={{ backgroundColor: '#F6F6F6', flex: 1, position: 'relative' }}>
+        style={{
+          backgroundColor: step === Step.Feel ? 'white' : '#F6F6F6',
+          flex: 1,
+          position: 'relative',
+        }}>
         <View
           style={{
             position: 'absolute',
@@ -166,7 +176,21 @@ const Record = () => {
               setSelectedEatingMenus={setSelectedEatingMenus}
             />
           )}
+          {step === Step.Feel && <Feeling />}
         </ScrollView>
+        {step === Step.Feel && (
+          <FastImage
+            source={feelingBackground}
+            style={{
+              width: 283,
+              height: 233,
+              position: 'absolute',
+              bottom: 28,
+              right: -20,
+            }}
+            resizeMode="contain"
+          />
+        )}
         <BottomButton
           disabled={nextButtonDisabled()}
           onClickNext={() => {
