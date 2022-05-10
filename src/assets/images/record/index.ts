@@ -13,3 +13,5 @@ export const selectedBakery = require('./bakery-selected.png');
 export const selectedBeverage = require('./beverage-selected.png');
 export const selectedCoffee = require('./coffee-selected.png');
 export const feelingBackground = require('./feeling-background.png');
+export const starOrange = require('./star-orange.png');
+export const starGray = require('./star-gray.png');

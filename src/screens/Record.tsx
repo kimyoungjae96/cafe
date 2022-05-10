@@ -28,12 +28,13 @@ import {
   selectedEtc,
   selectedStudy,
 } from '@/assets/images';
+import StarRating from '@/components/record/StarRating';
 
 enum Step {
   'PurposeOfVisit',
   'Menu',
   'Feel',
-  'Review',
+  'StarRating',
   'Score',
 }
 
@@ -109,6 +110,7 @@ const defaultEatingMenus = [
 
 const Record = () => {
   const [step, setStep] = useState(Step.PurposeOfVisit);
+  const [score, setScore] = useState(0);
   const [selectedPurposes, setSelectedPurposes] = useState<Set<string>>(
     new Set(),
   );
@@ -130,7 +132,10 @@ const Record = () => {
       <SafeAreaView style={{ flex: 0, backgroundColor: 'white' }} />
       <SafeAreaView
         style={{
-          backgroundColor: step === Step.Feel ? 'white' : '#F6F6F6',
+          backgroundColor:
+            step === Step.Feel || step === Step.StarRating
+              ? 'white'
+              : '#F6F6F6',
           flex: 1,
           position: 'relative',
         }}>
@@ -177,6 +182,9 @@ const Record = () => {
             />
           )}
           {step === Step.Feel && <Feeling />}
+          {step === Step.StarRating && (
+            <StarRating score={score} setScore={setScore} />
+          )}
         </ScrollView>
         {step === Step.Feel && (
           <FastImage

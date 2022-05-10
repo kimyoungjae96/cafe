@@ -3,8 +3,6 @@ import React, { useState } from 'react';
 import { Text, View } from '@/components';
 import { TouchableOpacity } from '../common';
 import { theme } from '@/infra';
-import FastImage from 'react-native-fast-image';
-import { feelingBackground } from '@/assets/images';
 
 const Feels = [
   {
