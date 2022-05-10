@@ -3,6 +3,7 @@ import React, { Dispatch, SetStateAction } from 'react';
 import { Text, View } from '@/components';
 import { Option, QuestionWithScore } from '@/components/record/index';
 import { IPurposeOfVisit } from '@/models';
+import { defaultPurposeOfVisit } from '@/screens/Record';
 
 const PurposeOfVisit = ({
   purposesOfVisit,
@@ -31,7 +32,7 @@ const PurposeOfVisit = ({
           paddingHorizontal: 20,
           paddingBottom: 38,
         }}>
-        <Text style={{ fontSize: 32, fontWeight: 'bold', marginTop: 23 }}>
+        <Text style={{ fontSize: 28, fontWeight: 'bold', marginTop: 23 }}>
           방문하신 목적을{'\n'}선택해주세요
         </Text>
         <View
@@ -41,14 +42,16 @@ const PurposeOfVisit = ({
             justifyContent: 'space-between',
           }}>
           {purposesOfVisit.map(purposeOfVisit => {
-            const key = purposeOfVisit.key;
+            const { key } = purposeOfVisit;
             const selected = selectedPurposes.has(key);
             return (
               <Option
+                key={key}
                 text={purposeOfVisit.description}
                 selected={selected}
                 onClickOption={() => {
                   selectedPurposes.clear();
+                  setPurposesOfVisit(defaultPurposeOfVisit);
                   setSelectedPurposes(prev => new Set(prev.add(key)));
                 }}
                 image={
@@ -63,11 +66,8 @@ const PurposeOfVisit = ({
       </View>
       {getQuestions([...selectedPurposes.values()].map((key: any) => key)).map(
         purpose => {
-          if (!purpose) {
-            return;
-          }
+          const { key, question } = purpose!!;
 
-          const { key, question } = purpose;
           return (
             <QuestionWithScore
               key={key}

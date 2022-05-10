@@ -38,7 +38,7 @@ enum Step {
   'Score',
 }
 
-const defaultPurposeOfVisit = [
+export const defaultPurposeOfVisit = [
   {
     key: 'study',
     description: '공부',

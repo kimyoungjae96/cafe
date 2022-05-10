@@ -74,5 +74,9 @@
 	<false/>
 	<key>CFBundleAllowMixedLocalizations</key>
     <string>true</string>
+    <key>NSCameraUsageDescription</key>
+    <string>사진을 찍겠습니까?</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>이미지 접근입니다.</string>
 </dict>
 </plist>

@@ -5,7 +5,8 @@ import {
   Text,
 } from 'react-native';
 import React, { useState } from 'react';
-import { theme } from '../../infra/color';
+
+import { theme } from '@/infra/color';
 
 interface TextInputProps extends RNTextInputProps {
   errorMessage?: string;

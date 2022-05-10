@@ -31,7 +31,7 @@ const EatingMenu = ({
           paddingHorizontal: 20,
           paddingBottom: 38,
         }}>
-        <Text style={{ fontSize: 32, fontWeight: 'bold', marginTop: 23 }}>
+        <Text style={{ fontSize: 28, fontWeight: 'bold', marginTop: 23 }}>
           드신 메뉴들을{'\n'}모두 선택해주세요
         </Text>
         <View
@@ -41,10 +41,11 @@ const EatingMenu = ({
             justifyContent: 'space-between',
           }}>
           {eatingMenus.map(purposeOfVisit => {
-            const key = purposeOfVisit.key;
+            const { key } = purposeOfVisit;
             const selected = selectedEatingMenus.has(key);
             return (
               <Option
+                key={key}
                 text={purposeOfVisit.description}
                 selected={selected}
                 image={

@@ -1,6 +1,44 @@
 import React from 'react';
+import FastImage from 'react-native-fast-image';
 
 import { Text, TouchableOpacity, View } from '@/components';
+import { theme } from '@/infra';
+import {
+  score1Default,
+  score1Selected,
+  score2Default,
+  score2Selected,
+  score3Default,
+  score3Selected,
+  score4Default,
+  score4Selected,
+  score5Default,
+  score5Selected,
+} from '@/assets/images';
+
+const FEELS = [
+  { defaultIcon: score1Default, selectedIcon: score1Selected, text: '화나요' },
+  {
+    defaultIcon: score2Default,
+    selectedIcon: score2Selected,
+    text: '별로예요',
+  },
+  {
+    defaultIcon: score3Default,
+    selectedIcon: score3Selected,
+    text: '괜찮아요',
+  },
+  {
+    defaultIcon: score4Default,
+    selectedIcon: score4Selected,
+    text: '만족해요',
+  },
+  {
+    defaultIcon: score5Default,
+    selectedIcon: score5Selected,
+    text: '최고예요',
+  },
+];
 
 const QuestionWithScore = ({
   question,
@@ -33,27 +71,48 @@ const QuestionWithScore = ({
           flexDirection: 'row',
           justifyContent: 'space-around',
         }}>
-        {['화나요', '별로예요', '괜찮아요', '만족해요', '최고예요'].map(
-          (value, index) => {
-            const score = index + 1;
-            return (
-              <View style={{ alignItems: 'center' }}>
-                <TouchableOpacity
-                  onPress={() => {
-                    onClickScore(score);
-                  }}
-                  style={{
-                    backgroundColor: selectedScore === score ? 'blue' : 'red',
-                    width: 42,
-                    height: 42,
-                    borderRadius: 21,
-                  }}
+        {FEELS.map((feel, index) => {
+          const score = index + 1;
+          return (
+            <View style={{ alignItems: 'center' }}>
+              <TouchableOpacity
+                onPress={() => {
+                  onClickScore(score);
+                }}
+                style={{
+                  backgroundColor:
+                    selectedScore === score
+                      ? theme['color-primary-500']
+                      : '#d3d3d3',
+                  width: 42,
+                  height: 42,
+                  borderRadius: 21,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <FastImage
+                  source={
+                    selectedScore === score
+                      ? feel.selectedIcon
+                      : feel.defaultIcon
+                  }
+                  style={{ width: 22, height: 22 }}
+                  resizeMode="contain"
                 />
-                <Text style={{ marginTop: 7 }}>{value}</Text>
-              </View>
-            );
-          },
-        )}
+              </TouchableOpacity>
+              <Text
+                style={{
+                  marginTop: 7,
+                  color:
+                    selectedScore === score
+                      ? theme['color-primary-500']
+                      : '#999999',
+                }}>
+                {feel.text}
+              </Text>
+            </View>
+          );
+        })}
       </View>
     </View>
   );
