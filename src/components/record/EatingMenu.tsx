@@ -31,9 +31,12 @@ const EatingMenu = ({
           paddingHorizontal: 20,
           paddingBottom: 38,
         }}>
-        <Text style={{ fontSize: 28, fontWeight: 'bold', marginTop: 23 }}>
-          드신 메뉴들을{'\n'}모두 선택해주세요
-        </Text>
+        <View
+          style={{ flexDirection: 'row', marginTop: 23, alignItems: 'center' }}>
+          <Text style={{ fontSize: 28, fontWeight: 'bold' }}>드신 메뉴</Text>
+          <Text style={{ fontSize: 28 }}>들을</Text>
+        </View>
+        <Text style={{ fontSize: 28 }}>모두 선택해주세요</Text>
         <View
           style={{
             marginTop: 30,

@@ -107,6 +107,7 @@ const QuestionWithScore = ({
                     selectedScore === score
                       ? theme['color-primary-500']
                       : '#999999',
+                  fontWeight: selectedScore === score ? '700' : '500',
                 }}>
                 {feel.text}
               </Text>

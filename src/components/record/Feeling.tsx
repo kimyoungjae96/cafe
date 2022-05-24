@@ -62,7 +62,7 @@ const Feels = [
   {
     id: 10,
     text: '천장이 높은',
-    icon: '✈',
+    icon: '✈️',
     selected: false,
   },
   {
@@ -96,9 +96,12 @@ const Feeling = ({}: {}) => {
           paddingHorizontal: 20,
           paddingBottom: 38,
         }}>
-        <Text style={{ fontSize: 32, fontWeight: 'bold', marginTop: 23 }}>
-          방문한 카페에서 {'\n'}느낀 점들을 {'\n'}모두 선택해주세요
-        </Text>
+        <View
+          style={{ marginTop: 23, flexDirection: 'row', alignItems: 'center' }}>
+          <Text style={{ fontSize: 28, fontWeight: 'bold' }}>느낀 점</Text>
+          <Text style={{ fontSize: 28 }}>들을</Text>
+        </View>
+        <Text style={{ fontSize: 28 }}>모두 선택해주세요</Text>
       </View>
       <View
         style={{
@@ -129,7 +132,7 @@ const Feeling = ({}: {}) => {
                   borderColor: feel.selected
                     ? theme['color-primary-500']
                     : '#D3D3D3',
-                  paddingHorizontal: 20,
+                  paddingHorizontal: 16,
                   paddingVertical: 11,
                   flexDirection: 'row',
                   alignItems: 'center',
@@ -138,10 +141,20 @@ const Feeling = ({}: {}) => {
                     index === 1 || (index > 1 && (index + 1) % 3 === 2) ? 3 : 0,
                   marginBottom: 11,
                 }}>
-                <Text style={{ fontSize: 16, marginRight: 4 }}>
+                <Text
+                  style={{
+                    fontSize: 16,
+                    marginRight: 4,
+                  }}>
                   {feel.icon}
                 </Text>
-                <Text>{feel.text}</Text>
+                <Text
+                  style={{
+                    fontWeight: feel.selected ? '700' : '500',
+                    color: feel.selected ? theme['color-primary-500'] : '#999',
+                  }}>
+                  {feel.text}
+                </Text>
               </View>
             </TouchableOpacity>
           );

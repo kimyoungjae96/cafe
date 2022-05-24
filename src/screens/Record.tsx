@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ScrollView, StatusBar, SafeAreaView } from 'react-native';
 
-import { Text, View } from '@/components';
+import { Text, TouchableOpacity, View } from '@/components';
 import {
   BottomButton,
   EatingMenu,
@@ -29,6 +29,8 @@ import {
   selectedStudy,
 } from '@/assets/images';
 import StarRating from '@/components/record/StarRating';
+import { TopBackNavigation } from '@/components/common/TopBackNavigation';
+import { useNavigation } from '@react-navigation/native';
 
 enum Step {
   'PurposeOfVisit',
@@ -117,6 +119,7 @@ const Record = () => {
   const [purposesOfVisit, setPurposesOfVisit] = useState<IPurposeOfVisit[]>(
     defaultPurposeOfVisit,
   );
+  const navigation = useNavigation();
 
   const [selectedEatingMenus, setSelectedEatingMenus] = useState<Set<string>>(
     new Set(),
@@ -124,8 +127,18 @@ const Record = () => {
   const [eatingMenus, setEatingMenus] =
     useState<IEatingMenu[]>(defaultEatingMenus);
 
-  const nextButtonDisabled = () =>
-    purposesOfVisit.every(purpose => purpose.score === 0);
+  const nextButtonDisabled = () => {
+    if (step === Step.PurposeOfVisit) {
+      return purposesOfVisit.every(purpose => purpose.score === 0);
+    }
+
+    if (step === Step.Menu) {
+      const eatMenus = eatingMenus.filter(menu => menu.score !== 0);
+      return eatMenus.length !== selectedEatingMenus.size;
+    }
+
+    return false;
+  };
 
   return (
     <>
@@ -148,23 +161,46 @@ const Record = () => {
           }}
         />
         <StatusBar barStyle="dark-content" />
+        {step === Step.Feel && (
+          <FastImage
+            source={feelingBackground}
+            style={{
+              width: 283,
+              height: 233,
+              position: 'absolute',
+              bottom: 28,
+              right: -20,
+            }}
+            resizeMode="contain"
+          />
+        )}
+        <TopBackNavigation
+          onPress={() => {
+            if (step === 0) {
+              navigation.goBack();
+            }
+            setStep(step - 1);
+          }}
+        />
         <ScrollView
           style={{ flex: 1 }}
           contentContainerStyle={{ paddingBottom: 80 }}>
-          <View
-            style={{
-              backgroundColor: 'white',
-              paddingTop: 12,
-              paddingHorizontal: 20,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-            }}>
-            <FastImage source={backIcon} style={{ width: 21, height: 17 }} />
-            <View style={{ flexDirection: 'row' }}>
-              <Text>{step + 1}</Text>
-              <Text>/5</Text>
-            </View>
-          </View>
+          {/*<View*/}
+          {/*  style={{*/}
+          {/*    backgroundColor: 'white',*/}
+          {/*    paddingTop: 12,*/}
+          {/*    paddingHorizontal: 20,*/}
+          {/*    flexDirection: 'row',*/}
+          {/*    justifyContent: 'space-between',*/}
+          {/*  }}>*/}
+          {/*  <TouchableOpacity>*/}
+          {/*    <FastImage source={backIcon} style={{ width: 21, height: 17 }} />*/}
+          {/*  </TouchableOpacity>*/}
+          {/*  <View style={{ flexDirection: 'row' }}>*/}
+          {/*    <Text>{step + 1}</Text>*/}
+          {/*    <Text>/5</Text>*/}
+          {/*  </View>*/}
+          {/*</View>*/}
           {step === Step.PurposeOfVisit && (
             <PurposeOfVisit
               purposesOfVisit={purposesOfVisit}
@@ -186,19 +222,6 @@ const Record = () => {
             <StarRating score={score} setScore={setScore} />
           )}
         </ScrollView>
-        {step === Step.Feel && (
-          <FastImage
-            source={feelingBackground}
-            style={{
-              width: 283,
-              height: 233,
-              position: 'absolute',
-              bottom: 28,
-              right: -20,
-            }}
-            resizeMode="contain"
-          />
-        )}
         <BottomButton
           disabled={nextButtonDisabled()}
           onClickNext={() => {

@@ -32,9 +32,14 @@ const PurposeOfVisit = ({
           paddingHorizontal: 20,
           paddingBottom: 38,
         }}>
-        <Text style={{ fontSize: 28, fontWeight: 'bold', marginTop: 23 }}>
-          방문하신 목적을{'\n'}선택해주세요
-        </Text>
+        <View
+          style={{ marginTop: 23, flexDirection: 'row', alignItems: 'center' }}>
+          <Text style={{ fontSize: 28, fontWeight: 'bold' }}>
+            방문하신 목적
+          </Text>
+          <Text style={{ fontSize: 28 }}>을</Text>
+        </View>
+        <Text style={{ fontSize: 28 }}>선택해주세요</Text>
         <View
           style={{
             marginTop: 30,

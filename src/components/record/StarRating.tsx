@@ -45,8 +45,9 @@ const StarRating = ({
         style={{
           paddingBottom: 38,
         }}>
-        <Text style={{ fontSize: 32, fontWeight: 'bold', marginTop: 23 }}>
-          마지막 단계예요!{'\n'}방문한 카페에{'\n'}의견을 남겨주세요
+        <Text style={{ fontSize: 28, marginTop: 23 }}>마지막 단계예요!</Text>
+        <Text style={{ fontSize: 28, fontWeight: 'bold' }}>
+          의견을 남겨주세요
         </Text>
       </View>
       <View

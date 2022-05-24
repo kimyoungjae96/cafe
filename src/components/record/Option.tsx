@@ -3,6 +3,7 @@ import React from 'react';
 import { Text, TouchableOpacity, View } from '@/components';
 import { theme } from '@/infra';
 import FastImage from 'react-native-fast-image';
+import { StyleSheet } from 'react-native';
 
 const Option = ({
   text,
@@ -35,9 +36,24 @@ const Option = ({
           resizeMode={FastImage.resizeMode.contain}
         />
       </TouchableOpacity>
-      <Text style={{ marginTop: 10 }}>{text}</Text>
+      <Text style={selected ? styles.selectedText : styles.notSelectedText}>
+        {text}
+      </Text>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  selectedText: {
+    marginTop: 10,
+    fontWeight: '700',
+    color: theme['color-primary-500'],
+  },
+  notSelectedText: {
+    marginTop: 10,
+    fontWeight: '700',
+    color: '#999',
+  },
+});
 
 export default Option;
