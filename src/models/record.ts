@@ -10,3 +10,8 @@ interface Option {
   defaultImage: string;
   selectedImage: string;
 }
+
+export interface Keyword {
+  keyword: string;
+  emoji: string;
+}

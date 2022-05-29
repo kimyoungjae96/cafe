@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ScrollView, StatusBar, SafeAreaView } from 'react-native';
 
-import { Text, TouchableOpacity, View } from '@/components';
+import { View } from '@/components';
 import {
   BottomButton,
   EatingMenu,
@@ -11,7 +11,6 @@ import {
 import { IEatingMenu, IPurposeOfVisit } from '@/models';
 import FastImage from 'react-native-fast-image';
 import {
-  backIcon,
   defaultBakery,
   defaultBeverage,
   defaultCoffee,
@@ -31,13 +30,20 @@ import {
 import StarRating from '@/components/record/StarRating';
 import { TopBackNavigation } from '@/components/common/TopBackNavigation';
 import { useNavigation } from '@react-navigation/native';
+import { reviewApi } from '@/api/ReviewApi';
+
+interface Feel {
+  id: number;
+  text: string;
+  icon: string;
+  selected: boolean;
+}
 
 enum Step {
   'PurposeOfVisit',
   'Menu',
   'Feel',
   'StarRating',
-  'Score',
 }
 
 export const defaultPurposeOfVisit = [
@@ -119,13 +125,15 @@ const Record = () => {
   const [purposesOfVisit, setPurposesOfVisit] = useState<IPurposeOfVisit[]>(
     defaultPurposeOfVisit,
   );
-  const navigation = useNavigation();
-
   const [selectedEatingMenus, setSelectedEatingMenus] = useState<Set<string>>(
     new Set(),
   );
+  const [feels, setFeels] = useState<Feel[]>([]);
   const [eatingMenus, setEatingMenus] =
     useState<IEatingMenu[]>(defaultEatingMenus);
+  const [description, setDescription] = useState('');
+  const [images, setImages] = useState([]);
+  const navigation = useNavigation();
 
   const nextButtonDisabled = () => {
     if (step === Step.PurposeOfVisit) {
@@ -139,6 +147,58 @@ const Record = () => {
 
     return false;
   };
+
+  const write = async () => {
+    const visitPurpose = purposesOfVisit.find(purposeOfVisit => {
+      return purposeOfVisit.score !== 0;
+    });
+
+    if (!visitPurpose) {
+      throw new Error('visit purpose is undefined');
+    }
+
+    const foodInfos = eatingMenus.map(eatingMenu => {
+      return {
+        food: eatingMenu.key,
+        score: eatingMenu.score,
+      };
+    });
+
+    const keywords = feels.filter(feel => feel.selected).map(feel => feel.id);
+
+    try {
+      await reviewApi.write({
+        cafeId: 1,
+        visitPurpose: visitPurpose.key,
+        visitPurposeScore: visitPurpose.score,
+        foodInfos,
+        keywords,
+        reviewImageIds: [],
+        description,
+        finalScore: score,
+      });
+    } catch (e) {
+      console.log('에러');
+    }
+  };
+
+  useEffect(() => {
+    const init = async () => {
+      const res = await reviewApi.getKeywords();
+      setFeels(
+        res.map((keyword, index) => {
+          return {
+            id: index,
+            text: keyword.keyword,
+            icon: keyword.emoji,
+            selected: false,
+          };
+        }),
+      );
+    };
+    init();
+    return () => {};
+  }, []);
 
   return (
     <>
@@ -217,14 +277,26 @@ const Record = () => {
               setSelectedEatingMenus={setSelectedEatingMenus}
             />
           )}
-          {step === Step.Feel && <Feeling />}
+          {step === Step.Feel && <Feeling feels={feels} setFeels={setFeels} />}
           {step === Step.StarRating && (
-            <StarRating score={score} setScore={setScore} />
+            <StarRating
+              images={images}
+              setImages={setImages}
+              score={score}
+              setScore={setScore}
+              description={description}
+              setDescription={setDescription}
+            />
           )}
         </ScrollView>
         <BottomButton
           disabled={nextButtonDisabled()}
-          onClickNext={() => {
+          onClickNext={async () => {
+            if (step === Step.StarRating) {
+              await write();
+              return;
+            }
+
             setStep(prevStep => prevStep + 1);
           }}
         />

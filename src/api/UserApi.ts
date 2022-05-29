@@ -35,4 +35,6 @@ class UserApi extends HttpClient {
   }
 }
 
-export const userApi = new UserApi({});
+export const userApi = new UserApi({
+  serviceURL: 'auth/local',
+});

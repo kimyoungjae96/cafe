@@ -32,12 +32,19 @@ const ScoresInfo = [
 const StarRating = ({
   score,
   setScore,
+  images,
+  setImages,
+  description,
+  setDescription,
 }: {
   score: number;
   setScore: Dispatch<SetStateAction<number>>;
+  description: string;
+  setDescription: Dispatch<SetStateAction<string>>;
+  images: any[];
+  setImages: Dispatch<SetStateAction<any>>;
 }) => {
   const [isFocused, setIsFocused] = useState(false);
-  const [response, setResponse] = React.useState<any>([]);
 
   return (
     <View style={{ paddingHorizontal: 20, backgroundColor: 'white' }}>
@@ -88,6 +95,8 @@ const StarRating = ({
       </View>
       <TextInput
         multiline
+        value={description}
+        onChangeText={setDescription}
         onFocus={() => {
           setIsFocused(true);
         }}
@@ -135,9 +144,12 @@ const StarRating = ({
                   includeExtra: true,
                 },
                 res => {
-                  setResponse((prev: any) => {
+                  const data = new FormData();
+                  data.append('images', {
+                    name: res.assets.
+                  });
+                  setImages((prev: any) => {
                     if (res.assets) {
-                      console.log(res.assets);
                       return [...prev, ...res.assets];
                     }
                     return [];
@@ -152,11 +164,11 @@ const StarRating = ({
             />
           </TouchableOpacity>
         </View>
-        {response.map((asset: any, index: number) => {
+        {images.map((asset: any, index: number) => {
           return (
             <TouchableOpacity
               onPress={() => {
-                setResponse((prev: any) => {
+                setImages((prev: any) => {
                   return [
                     ...prev.filter((_: any, idx: number) => {
                       return index !== idx;

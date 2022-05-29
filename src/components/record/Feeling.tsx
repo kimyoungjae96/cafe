@@ -1,93 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Text, View } from '@/components';
 import { TouchableOpacity } from '../common';
 import { theme } from '@/infra';
 
-const Feels = [
-  {
-    id: 1,
-    text: '아늑한',
-    icon: '🛋',
-    selected: false,
-  },
-  {
-    id: 2,
-    text: '조용한',
-    icon: '📖',
-    selected: false,
-  },
-  {
-    id: 3,
-    text: '감성적인',
-    icon: '🍂',
-    selected: false,
-  },
-  {
-    id: 4,
-    text: '이색적',
-    icon: '🎁',
-    selected: false,
-  },
-  {
-    id: 5,
-    text: '고급스러운',
-    icon: '💎',
-    selected: false,
-  },
-  {
-    id: 6,
-    text: '깔끔한',
-    icon: '✨',
-    selected: false,
-  },
-  {
-    id: 7,
-    text: '친절한',
-    icon: '😄',
-    selected: false,
-  },
-  {
-    id: 8,
-    text: '시끄러운',
-    icon: '🔉',
-    selected: false,
-  },
-  {
-    id: 9,
-    text: '평범한',
-    icon: '☕',
-    selected: false,
-  },
-  {
-    id: 10,
-    text: '천장이 높은',
-    icon: '✈️',
-    selected: false,
-  },
-  {
-    id: 11,
-    text: '어두운',
-    icon: '🔦',
-    selected: false,
-  },
-  {
-    id: 12,
-    text: '밝은',
-    icon: '🌟',
-    selected: false,
-  },
-  {
-    id: 13,
-    text: '뷰가 좋은',
-    icon: '🏞',
-    selected: false,
-  },
-];
-
-const Feeling = ({}: {}) => {
-  const [feels, setFeels] = useState(Feels);
-
+const Feeling = ({ feels, setFeels }: { feels: any; setFeels: any }) => {
   return (
     <>
       <View
@@ -109,12 +26,12 @@ const Feeling = ({}: {}) => {
           flexWrap: 'wrap',
           paddingHorizontal: 20,
         }}>
-        {feels.map((feel, index) => {
+        {feels.map((feel: any, index: number) => {
           return (
             <TouchableOpacity
               onPress={() =>
-                setFeels(prev => {
-                  return prev.map(p => {
+                setFeels((prev: any) => {
+                  return prev.map((p: any) => {
                     if (p.id === feel.id) {
                       return {
                         ...p,
