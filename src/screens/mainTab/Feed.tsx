@@ -10,7 +10,7 @@ import {
   starIcon,
 } from '@/assets/images';
 import * as React from 'react';
-import { theme } from '@/infra';
+import { theme, WINDOW_WIDTH } from '@/infra';
 
 const FeedScreen = () => {
   return (
@@ -74,7 +74,7 @@ const Post = () => {
           flexDirection: 'row',
           marginTop: 8,
           alignItems: 'center',
-          paddingHorizontal: 20,
+          paddingHorizontal: 18,
         }}>
         <FastImage
           source={starIcon}
@@ -99,7 +99,7 @@ const Post = () => {
       </View>
       <View
         style={{
-          width: '90%',
+          width: WINDOW_WIDTH - 36,
           height: 200,
           backgroundColor: 'skyblue',
           alignSelf: 'center',
@@ -113,7 +113,7 @@ const Post = () => {
       <View
         style={{
           paddingHorizontal: 20,
-          marginTop: 12,
+          marginTop: 10,
           marginBottom: 22,
           flexDirection: 'row',
         }}>
@@ -134,7 +134,7 @@ const Post = () => {
           flexDirection: 'row',
           justifyContent: 'space-between',
           paddingHorizontal: 20,
-          paddingBottom: 17,
+          paddingBottom: 16,
         }}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <FastImage
