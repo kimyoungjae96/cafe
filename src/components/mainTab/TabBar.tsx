@@ -214,7 +214,7 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
               activeOpacity={1}
               style={styles.centerButton}
               onPress={() => {
-                setIsWritingPressed(true);
+                setIsWritingPressed(prev => !prev);
               }}>
               <Animated.View style={[animatedScaleStyle]}>
                 <Text style={{ color: 'white', fontSize: 32, top: -2 }}>+</Text>
