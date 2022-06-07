@@ -6,3 +6,4 @@ export const searchIcon = require('./search.png');
 export const starIcon = require('./star.png');
 export const heartIcon = require('./heart.png');
 export const messageIcon = require('./message.png');
+export const gpsIcon = require('./gps.png');

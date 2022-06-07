@@ -1,5 +1,5 @@
 import { SafeAreaView, ScrollView } from 'react-native';
-import { View, Text } from '@/components';
+import { View, Text, TouchableOpacity } from '@/components';
 import FastImage from 'react-native-fast-image';
 import {
   heartIcon,
@@ -11,8 +11,9 @@ import {
 } from '@/assets/images';
 import * as React from 'react';
 import { theme, WINDOW_WIDTH } from '@/infra';
+import { ScreenName } from '@/infra/route';
 
-const FeedScreen = () => {
+const FeedScreen = ({ navigation }: { navigation: any }) => {
   return (
     <>
       <SafeAreaView style={{ flex: 0, backgroundColor: 'white' }} />
@@ -40,11 +41,16 @@ const FeedScreen = () => {
               style={{ width: 24, height: 24, marginRight: 20 }}
               resizeMode="contain"
             />
-            <FastImage
-              source={searchIcon}
-              style={{ width: 24, height: 24 }}
-              resizeMode="contain"
-            />
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate(ScreenName.Search);
+              }}>
+              <FastImage
+                source={searchIcon}
+                style={{ width: 24, height: 24 }}
+                resizeMode="contain"
+              />
+            </TouchableOpacity>
           </View>
         </View>
         <ScrollView>

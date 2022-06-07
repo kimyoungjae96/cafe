@@ -15,7 +15,7 @@ export class HttpClient {
       baseURL: `${hostAddress}/${serviceURL}`,
       headers: {
         'Content-Type': 'application/json',
-        Authorization:
+        'x-access-token':
           'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI0IiwiaWF0IjoxNjUzODA2MjMzLCJleHAiOjE2ODUzNDIyMzN9.nABjUXzSwU00J0MYaa6fgcXkwNW5r45Gb12izhBvL9Xs9jEsbz41xaYDW65Aok0WIfYR9exHd9vcOZVHjFW2lQ',
       },
       timeout: 60 * 1000,

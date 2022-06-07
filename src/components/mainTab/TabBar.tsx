@@ -157,6 +157,7 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
               }}>
               <TouchableOpacity
                 onPress={() => {
+                  setIsWritingPressed(false);
                   navigation.navigate(ScreenName.Record);
                 }}
                 style={{
@@ -182,6 +183,7 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
               <TouchableOpacity
                 style={{ flexDirection: 'row', alignItems: 'center' }}
                 onPress={() => {
+                  setIsWritingPressed(false);
                   navigation.navigate(ScreenName.Record);
                 }}>
                 <FastImage

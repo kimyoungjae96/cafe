@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { SignUp, Record } from '@/screens';
+import { SignUp, Record, Search } from '@/screens';
 import MainTab from '@/navigators/MainTab';
 import { ScreenName } from '@/infra/route';
 
@@ -21,6 +21,7 @@ const RootStack = () => {
           <Stack.Group>
             <Stack.Screen name={ScreenName.MainTab} component={MainTab} />
             <Stack.Screen name={ScreenName.Record} component={Record} />
+            <Stack.Screen name={ScreenName.Search} component={Search} />
           </Stack.Group>
         </>
       ) : (
