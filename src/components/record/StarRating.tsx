@@ -5,6 +5,8 @@ import * as ImagePicker from 'react-native-image-picker';
 
 import { View, Text, TouchableOpacity } from '@/components';
 import { plus, starGray, starOrange } from '@/assets/images';
+import { isIOS } from '@/infra';
+import { reviewApi } from '@/api/ReviewApi';
 
 const ScoresInfo = [
   {
@@ -143,11 +145,20 @@ const StarRating = ({
                   includeBase64: false,
                   includeExtra: true,
                 },
-                res => {
+                async res => {
                   const data = new FormData();
-                  data.append('images', {
-                    name: res.assets.
+                  res?.assets?.map(asset => {
+                    data.append('image', {
+                      name: asset.fileName,
+                      type: asset.type,
+                      uri: isIOS
+                        ? asset.uri?.replace('file://', '')
+                        : asset.uri,
+                    });
                   });
+
+                  await reviewApi.uploadImage(data);
+
                   setImages((prev: any) => {
                     if (res.assets) {
                       return [...prev, ...res.assets];

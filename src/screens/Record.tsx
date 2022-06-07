@@ -31,6 +31,7 @@ import StarRating from '@/components/record/StarRating';
 import { TopBackNavigation } from '@/components/common/TopBackNavigation';
 import { useNavigation } from '@react-navigation/native';
 import { reviewApi } from '@/api/ReviewApi';
+import { ScreenName } from '@/infra/route';
 
 interface Feel {
   id: number;
@@ -48,7 +49,7 @@ enum Step {
 
 export const defaultPurposeOfVisit = [
   {
-    key: 'study',
+    key: 'STUDY',
     description: '공부',
     question: '공부하기 괜찮으셨나요?',
     score: 0,
@@ -56,7 +57,7 @@ export const defaultPurposeOfVisit = [
     selectedImage: selectedStudy,
   },
   {
-    key: 'conversation',
+    key: 'TALK',
     description: '대화',
     question: '대화하기 괜찮으셨나요?',
     score: 0,
@@ -64,7 +65,7 @@ export const defaultPurposeOfVisit = [
     selectedImage: selectedConversation,
   },
   {
-    key: 'date',
+    key: 'DATE',
     description: '데이트',
     question: '데이트하기 괜찮으셨나요?',
     score: 0,
@@ -72,7 +73,7 @@ export const defaultPurposeOfVisit = [
     selectedImage: selectedDate,
   },
   {
-    key: 'etc',
+    key: 'ETC',
     description: '기타',
     question: '전반적으로 카페는 어떠셨나요?',
     score: 0,
@@ -116,7 +117,7 @@ const defaultEatingMenus = [
   },
 ];
 
-const Record = () => {
+const Record = ({ navigation }: { navigation: any }) => {
   const [step, setStep] = useState(Step.PurposeOfVisit);
   const [score, setScore] = useState(0);
   const [selectedPurposes, setSelectedPurposes] = useState<Set<string>>(
@@ -133,7 +134,6 @@ const Record = () => {
     useState<IEatingMenu[]>(defaultEatingMenus);
   const [description, setDescription] = useState('');
   const [images, setImages] = useState([]);
-  const navigation = useNavigation();
 
   const nextButtonDisabled = () => {
     if (step === Step.PurposeOfVisit) {
@@ -157,12 +157,14 @@ const Record = () => {
       throw new Error('visit purpose is undefined');
     }
 
-    const foodInfos = eatingMenus.map(eatingMenu => {
-      return {
-        food: eatingMenu.key,
-        score: eatingMenu.score,
-      };
-    });
+    const foodInfos = eatingMenus
+      .filter(eatingMenu => eatingMenu.score !== 0)
+      .map(eatingMenu => {
+        return {
+          food: eatingMenu.key,
+          score: eatingMenu.score,
+        };
+      });
 
     const keywords = feels.filter(feel => feel.selected).map(feel => feel.id);
 
@@ -294,6 +296,7 @@ const Record = () => {
           onClickNext={async () => {
             if (step === Step.StarRating) {
               await write();
+              navigation.navigate(ScreenName.MainTab);
               return;
             }
 
