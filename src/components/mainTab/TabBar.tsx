@@ -15,9 +15,12 @@ import {
 import { Text, TouchableOpacity, View } from '@/components';
 import { isIOS, theme, WINDOW_HEIGHT, WINDOW_WIDTH } from '@/infra';
 import { ScreenName } from '@/infra/route';
+import BottomSheet from '@gorhom/bottom-sheet';
+import { useRef } from 'react';
 
 const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
   const [isWritingPressed, setIsWritingPressed] = React.useState(false);
+  const bottomSheetRef = useRef<BottomSheet>(null);
 
   const spinValue = React.useState(new Animated.Value(0))[0];
 
@@ -115,7 +118,7 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
       {isWritingPressed && (
         <TouchableOpacity
           onPress={() => {
-            setIsWritingPressed(false);
+            setIsWritingPressed(prev => !prev);
           }}
           style={{
             position: 'absolute',
@@ -133,58 +136,68 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
               backgroundColor: 'black',
             }}
           />
-          <View
+          <BottomSheet
+            snapPoints={[187]}
             style={{
-              borderTopLeftRadius: 20,
-              borderTopRightRadius: 20,
-              backgroundColor: 'white',
-              width: '100%',
-              paddingBottom: 40,
-              paddingHorizontal: 20,
+              flex: 1,
               paddingTop: 22,
-            }}>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate(ScreenName.Record);
-              }}
+              paddingHorizontal: 20,
+              backgroundColor: 'grey',
+            }}
+            ref={bottomSheetRef}
+            enableContentPanningGesture={false}
+            enableHandlePanningGesture={false}
+            enableOverDrag={false}
+            handleIndicatorStyle={{ display: 'none' }}
+            handleStyle={{ padding: 0 }}>
+            <View
               style={{
-                borderBottomColor: '#E2E2E2',
-                borderBottomWidth: 1,
-                marginBottom: 18,
-                paddingBottom: 18,
-                flexDirection: 'row',
-                alignItems: 'center',
+                backgroundColor: 'white',
+                width: '100%',
               }}>
-              <FastImage
-                source={recordIcon}
-                style={{ width: 22, height: 26 }}
-                resizeMode="contain"
-              />
-              <View style={{ marginLeft: 16 }}>
-                <Text style={{ fontSize: 17 }}>기록하기</Text>
-                <Text style={{ fontSize: 13, marginTop: 5, opacity: 0.3 }}>
-                  방문했던 카페의 기록을 남길 수 있어요.
-                </Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{ flexDirection: 'row', alignItems: 'center' }}
-              onPress={() => {
-                navigation.navigate(ScreenName.Record);
-              }}>
-              <FastImage
-                source={footStampIcon}
-                style={{ width: 22, height: 26 }}
-                resizeMode="contain"
-              />
-              <View style={{ marginLeft: 16 }}>
-                <Text style={{ fontSize: 17 }}>발도장 남기기</Text>
-                <Text style={{ fontSize: 13, marginTop: 5, opacity: 0.3 }}>
-                  발도장만 남기고 나중에 기록을 추가할 수 있어요.
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate(ScreenName.Record);
+                }}
+                style={{
+                  borderBottomColor: '#E2E2E2',
+                  borderBottomWidth: 1,
+                  marginBottom: 18,
+                  paddingBottom: 18,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}>
+                <FastImage
+                  source={recordIcon}
+                  style={{ width: 22, height: 26 }}
+                  resizeMode="contain"
+                />
+                <View style={{ marginLeft: 16 }}>
+                  <Text style={{ fontSize: 17 }}>기록하기</Text>
+                  <Text style={{ fontSize: 13, marginTop: 5, opacity: 0.3 }}>
+                    방문했던 카페의 기록을 남길 수 있어요.
+                  </Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{ flexDirection: 'row', alignItems: 'center' }}
+                onPress={() => {
+                  navigation.navigate(ScreenName.Record);
+                }}>
+                <FastImage
+                  source={footStampIcon}
+                  style={{ width: 22, height: 26 }}
+                  resizeMode="contain"
+                />
+                <View style={{ marginLeft: 16 }}>
+                  <Text style={{ fontSize: 17 }}>발도장 남기기</Text>
+                  <Text style={{ fontSize: 13, marginTop: 5, opacity: 0.3 }}>
+                    발도장만 남기고 나중에 기록을 추가할 수 있어요.
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          </BottomSheet>
         </TouchableOpacity>
       )}
       <View
