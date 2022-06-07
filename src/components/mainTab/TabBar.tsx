@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { Animated, StyleSheet } from 'react-native';
 
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import FastImage from 'react-native-fast-image';
@@ -18,6 +18,31 @@ import { ScreenName } from '@/infra/route';
 
 const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
   const [isWritingPressed, setIsWritingPressed] = React.useState(false);
+
+  const spinValue = React.useState(new Animated.Value(0))[0];
+
+  React.useEffect(() => {
+    if (isWritingPressed) {
+      Animated.spring(spinValue, {
+        toValue: 1,
+        useNativeDriver: true,
+      }).start();
+    } else {
+      Animated.spring(spinValue, {
+        toValue: 0,
+        useNativeDriver: true,
+      }).start();
+    }
+  }, [isWritingPressed, spinValue]);
+
+  const spinDeg = spinValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '45deg'],
+  });
+
+  const animatedScaleStyle = {
+    transform: [{ rotate: spinDeg }],
+  };
 
   const renderMenu = (route: any, index: number) => {
     const { options } = descriptors[route.key];
@@ -108,33 +133,58 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
               backgroundColor: 'black',
             }}
           />
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate(ScreenName.Record);
-            }}
+          <View
             style={{
-              ...styles.writingButton,
-              marginBottom: 8,
+              borderTopLeftRadius: 20,
+              borderTopRightRadius: 20,
+              backgroundColor: 'white',
+              width: '100%',
+              paddingBottom: 40,
+              paddingHorizontal: 20,
+              paddingTop: 22,
             }}>
-            <FastImage
-              source={recordIcon}
-              style={{ width: 22, height: 26 }}
-              resizeMode="contain"
-            />
-            <Text style={{ fontSize: 11, marginTop: 4 }}>기록</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{
-              ...styles.writingButton,
-              marginBottom: 36,
-            }}>
-            <FastImage
-              source={footStampIcon}
-              style={{ width: 28, height: 31 }}
-              resizeMode="contain"
-            />
-            <Text style={{ fontSize: 11, marginTop: 4 }}>발도장</Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate(ScreenName.Record);
+              }}
+              style={{
+                borderBottomColor: '#E2E2E2',
+                borderBottomWidth: 1,
+                marginBottom: 18,
+                paddingBottom: 18,
+                flexDirection: 'row',
+                alignItems: 'center',
+              }}>
+              <FastImage
+                source={recordIcon}
+                style={{ width: 22, height: 26 }}
+                resizeMode="contain"
+              />
+              <View style={{ marginLeft: 16 }}>
+                <Text style={{ fontSize: 17 }}>기록하기</Text>
+                <Text style={{ fontSize: 13, marginTop: 5, opacity: 0.3 }}>
+                  방문했던 카페의 기록을 남길 수 있어요.
+                </Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{ flexDirection: 'row', alignItems: 'center' }}
+              onPress={() => {
+                navigation.navigate(ScreenName.Record);
+              }}>
+              <FastImage
+                source={footStampIcon}
+                style={{ width: 22, height: 26 }}
+                resizeMode="contain"
+              />
+              <View style={{ marginLeft: 16 }}>
+                <Text style={{ fontSize: 17 }}>발도장 남기기</Text>
+                <Text style={{ fontSize: 13, marginTop: 5, opacity: 0.3 }}>
+                  발도장만 남기고 나중에 기록을 추가할 수 있어요.
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
         </TouchableOpacity>
       )}
       <View
@@ -166,7 +216,9 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
               onPress={() => {
                 setIsWritingPressed(true);
               }}>
-              <Text style={{ color: 'white', fontSize: 32, top: -2 }}>+</Text>
+              <Animated.View style={[animatedScaleStyle]}>
+                <Text style={{ color: 'white', fontSize: 32, top: -2 }}>+</Text>
+              </Animated.View>
             </TouchableOpacity>
           </View>
           <View style={{ backgroundColor: 'white', height: 48 }} />
@@ -189,14 +241,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingTop: 14,
     paddingBottom: 11,
-  },
-  writingButton: {
-    width: 66,
-    height: 66,
-    backgroundColor: 'white',
-    borderRadius: 33,
-    alignItems: 'center',
-    justifyContent: 'center',
+    borderTopWidth: 1,
+    borderColor: '#E2E2E2',
   },
   circleForCenterButton: {
     width: 28,
