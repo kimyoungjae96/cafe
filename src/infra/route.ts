@@ -3,4 +3,5 @@ export enum ScreenName {
   Record = 'Record',
   SignUp = 'SignUp',
   Search = 'Search',
+  SearchResult = 'SearchResult',
 }

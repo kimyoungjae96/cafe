@@ -4,6 +4,7 @@ import { TouchableOpacity, View, Text, Dot } from '@/components';
 import FastImage from 'react-native-fast-image';
 import { backIcon, gpsIcon, searchIcon } from '@/assets/images';
 import { theme } from '@/infra';
+import { ScreenName } from '@/infra/route';
 
 const Search = ({ navigation }: { navigation: any }) => {
   const [keyword, setKeyword] = useState('');
@@ -30,11 +31,17 @@ const Search = ({ navigation }: { navigation: any }) => {
             onChangeText={setKeyword}
             placeholder="카페를 검색해주세요"
           />
-          <FastImage
-            source={searchIcon}
-            style={{ width: 24, height: 24, right: 20, position: 'absolute' }}
-            resizeMode="contain"
-          />
+          <TouchableOpacity
+            style={{ right: 20, position: 'absolute' }}
+            onPress={() => {
+              navigation.navigate(ScreenName.SearchResult);
+            }}>
+            <FastImage
+              source={searchIcon}
+              style={{ width: 24, height: 24 }}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
         </View>
         <View
           style={{
