@@ -49,7 +49,7 @@ const Feeling = ({ feels, setFeels }: { feels: any; setFeels: any }) => {
                   borderColor: feel.selected
                     ? theme['color-primary-500']
                     : '#D3D3D3',
-                  paddingHorizontal: 16,
+                  paddingHorizontal: 15,
                   paddingVertical: 11,
                   flexDirection: 'row',
                   alignItems: 'center',
