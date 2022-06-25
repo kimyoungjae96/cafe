@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { SafeAreaView, TextInput } from 'react-native';
-import { TouchableOpacity, View } from '@/components';
+import { SafeAreaView, StyleSheet, TextInput } from 'react-native';
+import { Text, TouchableOpacity, View } from '@/components';
 import { theme } from '@/infra';
 import FastImage from 'react-native-fast-image';
 import { backIcon, searchIcon } from '@/assets/images';
@@ -66,9 +66,77 @@ const SearchResult = ({ navigation }: { navigation: any }) => {
             />
           </NaverMapView>
         </View>
-        <View style={{ flex: 48 }}></View>
+        <View style={{ flex: 48 }}>
+          <View
+            style={{
+              height: 42,
+              borderBottomWidth: 1,
+              borderColor: '#e7e7e7',
+            }}>
+            <Text
+              style={{
+                fontWeight: '500',
+                marginVertical: 12,
+                marginLeft: 20,
+              }}>
+              검색 결과
+            </Text>
+          </View>
+          <SearchResultItem isSelected />
+          <SearchResultItem isSelected={false} />
+          <SearchResultItem isSelected={false} />
+          <SearchResultItem isSelected={false} />
+        </View>
       </View>
     </SafeAreaView>
+  );
+};
+
+const SearchResultItem = ({ isSelected }: { isSelected: boolean }) => {
+  return (
+    <View
+      style={{
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderColor: '#efefef',
+        borderBottomWidth: 1,
+        marginHorizontal: 20,
+      }}>
+      <View
+        style={{
+          height: 80,
+          justifyContent: 'center',
+        }}>
+        <Text
+          style={{
+            fontWeight: isSelected ? '700' : '500',
+            fontSize: 16,
+          }}>
+          스타벅스강남삼성타운점
+        </Text>
+        <Text style={{ color: '#999999', fontSize: 13, marginTop: 5 }}>
+          서울특별시 중구 세종대로 124 스타벅스
+        </Text>
+      </View>
+      <TouchableOpacity
+        onPress={() => {}}
+        style={{
+          paddingHorizontal: 16,
+          paddingVertical: 8,
+          backgroundColor: isSelected ? theme['color-primary-500'] : 'white',
+          borderColor: theme['color-primary-500'],
+          borderWidth: 1,
+          borderRadius: 6,
+        }}>
+        <Text
+          style={{
+            color: isSelected ? 'white' : theme['color-primary-500'],
+          }}>
+          선택
+        </Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 
