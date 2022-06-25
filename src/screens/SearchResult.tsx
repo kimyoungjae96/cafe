@@ -5,6 +5,8 @@ import { theme } from '@/infra';
 import FastImage from 'react-native-fast-image';
 import { backIcon, searchIcon } from '@/assets/images';
 import NaverMapView, { Marker } from 'react-native-nmap';
+import { NormalMapPin } from '@/components/searchResult/NormalMapPin';
+import { SelectedMapPin } from '@/components/searchResult/SelectedMapPin';
 
 const SearchResult = ({ navigation }: { navigation: any }) => {
   const [keyword, setKeyword] = useState('');
@@ -50,20 +52,8 @@ const SearchResult = ({ navigation }: { navigation: any }) => {
               console.warn('onCameraChange', JSON.stringify(e))
             }
             onMapClick={e => console.warn('onMapClick', JSON.stringify(e))}>
-            <Marker
-              coordinate={P0}
-              onClick={() => console.warn('onClick! p0')}
-            />
-            <Marker
-              coordinate={P1}
-              pinColor="blue"
-              onClick={() => console.warn('onClick! p1')}
-            />
-            <Marker
-              coordinate={P2}
-              pinColor="red"
-              onClick={() => console.warn('onClick! p2')}
-            />
+            <NormalMapPin name={'1'} location={P0} />
+            <SelectedMapPin name={'2'} location={P1} />
           </NaverMapView>
         </View>
         <View style={{ flex: 48 }}>
