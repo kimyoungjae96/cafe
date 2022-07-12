@@ -12,8 +12,16 @@ import {
 import * as React from 'react';
 import { theme, WINDOW_WIDTH } from '@/infra';
 import { ScreenName } from '@/infra/route';
+import { useEffect } from 'react';
+import { usePermissionStore } from '@/stores';
 
 const FeedScreen = ({ navigation }: { navigation: any }) => {
+  const r = usePermissionStore();
+  useEffect(() => {
+    r.requestGeolocationPermission();
+    return () => {};
+  }, [r]);
+
   return (
     <>
       <SafeAreaView style={{ flex: 0, backgroundColor: 'white' }} />
