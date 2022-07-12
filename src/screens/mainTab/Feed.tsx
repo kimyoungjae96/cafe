@@ -14,8 +14,9 @@ import { theme, WINDOW_WIDTH } from '@/infra';
 import { ScreenName } from '@/infra/route';
 import { useEffect } from 'react';
 import { usePermissionStore } from '@/stores';
+import SearchBar from '@/components/common/SearchBar';
 
-const FeedScreen = ({ navigation }: { navigation: any }) => {
+const FeedScreen = () => {
   const r = usePermissionStore();
   useEffect(() => {
     r.requestGeolocationPermission();
@@ -26,41 +27,7 @@ const FeedScreen = ({ navigation }: { navigation: any }) => {
     <>
       <SafeAreaView style={{ flex: 0, backgroundColor: 'white' }} />
       <SafeAreaView style={{ flex: 1 }}>
-        <View
-          style={{
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            height: 54,
-            width: '100%',
-            flexDirection: 'row',
-            paddingHorizontal: 20,
-            backgroundColor: 'white',
-            borderColor: '#E7E7E7',
-            borderBottomWidth: 1,
-          }}>
-          <FastImage
-            source={logoIcon}
-            style={{ width: 56, height: 18 }}
-            resizeMode="contain"
-          />
-          <View style={{ flexDirection: 'row' }}>
-            <FastImage
-              source={notificationIcon}
-              style={{ width: 24, height: 24, marginRight: 20 }}
-              resizeMode="contain"
-            />
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate(ScreenName.Search);
-              }}>
-              <FastImage
-                source={searchIcon}
-                style={{ width: 24, height: 24 }}
-                resizeMode="contain"
-              />
-            </TouchableOpacity>
-          </View>
-        </View>
+        <SearchBar backgroundColor="white" image={logoIcon} />
         <ScrollView>
           <Post />
           <Post />
@@ -72,7 +39,7 @@ const FeedScreen = ({ navigation }: { navigation: any }) => {
 
 const Post = () => {
   return (
-    <View style={{ backgroundColor: 'white', marginBottom: 6 }}>
+    <TouchableOpacity style={{ backgroundColor: 'white', marginBottom: 6 }}>
       <View
         style={{
           flexDirection: 'row',
@@ -172,7 +139,7 @@ const Post = () => {
           16시간 전
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
