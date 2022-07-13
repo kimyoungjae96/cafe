@@ -4,4 +4,5 @@ export enum ScreenName {
   SignUp = 'SignUp',
   Search = 'Search',
   SearchResult = 'SearchResult',
+  CafeDetail = 'CafeDetail',
 }

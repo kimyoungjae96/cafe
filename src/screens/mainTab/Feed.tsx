@@ -1,20 +1,14 @@
 import { SafeAreaView, ScrollView } from 'react-native';
 import { View, Text, TouchableOpacity } from '@/components';
 import FastImage from 'react-native-fast-image';
-import {
-  heartIcon,
-  logoIcon,
-  messageIcon,
-  notificationIcon,
-  searchIcon,
-  starIcon,
-} from '@/assets/images';
+import { heartIcon, logoIcon, messageIcon, starIcon } from '@/assets/images';
 import * as React from 'react';
 import { theme, WINDOW_WIDTH } from '@/infra';
 import { ScreenName } from '@/infra/route';
 import { useEffect } from 'react';
 import { usePermissionStore } from '@/stores';
 import SearchBar from '@/components/common/SearchBar';
+import { useNavigation } from '@react-navigation/native';
 
 const FeedScreen = () => {
   const r = usePermissionStore();
@@ -38,8 +32,13 @@ const FeedScreen = () => {
 };
 
 const Post = () => {
+  const navigation: any = useNavigation();
   return (
-    <TouchableOpacity style={{ backgroundColor: 'white', marginBottom: 6 }}>
+    <TouchableOpacity
+      onPress={() => {
+        navigation.navigate(ScreenName.CafeDetail);
+      }}
+      style={{ backgroundColor: 'white', marginBottom: 6 }}>
       <View
         style={{
           flexDirection: 'row',
