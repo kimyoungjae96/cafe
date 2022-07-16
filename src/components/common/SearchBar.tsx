@@ -1,5 +1,5 @@
 import FastImage, { Source } from 'react-native-fast-image';
-import { logoIcon, notificationIcon, searchIcon } from '@/assets/images';
+import { notificationIcon, searchIcon } from '@/assets/images';
 import { TouchableOpacity, View } from '@/components';
 import { ScreenName } from '@/infra/route';
 import * as React from 'react';
